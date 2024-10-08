@@ -40,7 +40,7 @@ export default function FirstView() {
 						paddingLeft: 80,
 						paddingRight: 80,
 					}}
-				>Seja bem-vindo(a) Weather Forecast
+				>Seja bem-vindo(a) ao Weather Forecast!
 
 				</Text>
 				<View style={{
@@ -52,6 +52,21 @@ export default function FirstView() {
 						height={300}
 					/>
 				</View>
+			</View>
+			<View>
+				<Text
+					style={{
+						fontSize: 16,
+						fontWeight: 700,
+						color: "#455A64",
+						textAlign: "center",
+						paddingLeft: 80,
+						paddingRight: 80,
+					}}
+				>
+					Inicie a busca por cidade para obter o clima atual e previsão.
+
+				</Text>
 			</View>
 			<View style={{
 				marginBottom: 50,
@@ -79,7 +94,7 @@ export default function FirstView() {
 						textAlign: "center",
 						fontWeight: 700
 					}}>
-						Buscar Clima
+					Iniciar Busca
 					</Text>
 				</ButtonComponent>
 			</View>
