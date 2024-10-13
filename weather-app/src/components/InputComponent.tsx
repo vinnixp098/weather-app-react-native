@@ -3,8 +3,8 @@ import { View, TextInput, Text, StyleSheet, TextInputProps, TextStyle } from 're
 
 interface InputComponentProps extends TextInputProps {
   label?: string;
-  labelStyle?: TextStyle; // Estilos personalizados para o rótulo
-  style?: TextInputProps['style']; // Estilo para o TextInput
+  labelStyle?: TextStyle;
+  style?: TextInputProps['style'];
 }
 
 export const InputComponent: React.FC<InputComponentProps> = ({
@@ -16,7 +16,7 @@ export const InputComponent: React.FC<InputComponentProps> = ({
   return (
     <View style={styles.container}>
       <TextInput
-        style={[styles.input, style]} // Aplica a propriedade de estilo diretamente ao TextInput
+        style={[styles.input, style]}
         placeholderTextColor="#888"
         {...props}
       />
@@ -29,13 +29,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   input: {
-    // height: 40,
-    // borderColor: '#ccc',
     borderRightColor: "red",
     borderRightWidth:  0,
-
     borderWidth: 1,
-    // borderRadius: 5,
     paddingHorizontal: 20,
     fontSize: 16,
   },

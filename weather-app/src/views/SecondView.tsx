@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, SafeAreaView, Button, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { ImageComponent } from '../components/ImageComponent';
 import { InputComponent } from '../components/InputComponent';
 import axios from 'axios';
-import countries, { getName } from 'i18n-iso-countries';
+import countries from 'i18n-iso-countries';
 import 'i18n-iso-countries/langs/pt.json';
 import { LoadingComponent } from '../components/LoadingComponent';
 
 countries.registerLocale(require('i18n-iso-countries/langs/pt.json'));
-
 
 export default function SecondView() {
 	const navigate = useNavigate();
@@ -38,7 +37,6 @@ export default function SecondView() {
 		} else {
 			setLoading(false);
 			setError(true);
-			// return
 		}
 		setLoading(false);
 	}

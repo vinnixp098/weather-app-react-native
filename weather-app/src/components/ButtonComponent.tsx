@@ -3,11 +3,11 @@ import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, View } from '
 
 interface ButtonProps {
   onPress?: () => void;
-  title?: string; // Agora, title é opcional
+  title?: string;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  icon?: React.ReactNode; // Permitir passar um ícone
-  children?: React.ReactNode; // Permitir passar filhos
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const ButtonComponent: React.FC<ButtonProps> = ({
@@ -16,7 +16,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   textStyle,
   icon,
   children,
-  title, // Adiciona title ao destructuring
+  title
 }) => {
   return (
     <TouchableOpacity
@@ -28,7 +28,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
         {children ? (
           children
         ) : (
-          title && <Text style={[styles.text, textStyle]}>{title}</Text> // Exibe o título se fornecido
+          title && <Text style={[styles.text, textStyle]}>{title}</Text>
         )}
       </View>
     </TouchableOpacity>
