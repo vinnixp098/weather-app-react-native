@@ -17,62 +17,51 @@ export default function SecondView() {
 
 	const [weather, setWeather] = useState<any>({});
 	const [countryName, setCountryName] = useState<string>('');
-	const [country, setCountryCode] = useState<string>('');
-	const [temperature, setTemperature] = useState<any>();
-
 	const [cityName, setCityName] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [show, setShow] = useState(false);
+	const [icon, setIcon] = useState<string>('');
 
 	const searchWeather = async () => {
-
 		setLoading(true);
-		// setWeather({});
-
 		const keyApi = "05138500be22715eaf4a7f8c4904a03c";
-
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${keyApi}&lang=pt_br&units=metric`);
-
 		if (response) {
-
 			setWeather(response.data);
-			const countryCode = response.data.sys.country; // Obter o código do país
-			setCountryCode(countryCode);
-			const name = countries.getName(countryCode, 'pt'); // Obter o nome do país
-			setCountryName(name || 'País não encontrado'); // Atualizar o nome do país
-
+			const countryCode = response.data.sys.country;
+			setCountryName(countries.getName(countryCode, 'pt')  || '');
+			setIcon(response.data.weather[0].icon);
 			setLoading(false);
 			setShow(true);
 			setCityName('');
-
 		} else {
 			setLoading(false);
 			setError(true);
-			return
-
+			// return
 		}
-
-
 		setLoading(false);
 	}
-
-	const imageUrl = 'https://openweathermap.org/themes/openweathermap/assets/img/landing/one_call_api.png';
-
 
 	const capitalizeFirstLetter = (string: string) => {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	};
 
 	return (
-		<ScrollView>
+		<ScrollView
+			style={{
+				flex: 1,
+				backgroundColor: "#F0F0F0",
+			}}
+			showsVerticalScrollIndicator={false}
+		>
 			<View style={{
 				padding: 20,
 				paddingTop: 30,
 				display: "flex",
 				flexDirection: "column",
 				alignContent: "center",
-				backgroundColor: "#F0F0F0",
+				
 				alignItems: "center",
 				height: "100%",
 			}}>
@@ -84,7 +73,6 @@ export default function SecondView() {
 					marginTop: 40
 				}}>
 					<View style={{
-						// backgroundColor: "red",
 						alignItems: 'center',
 						marginTop: 0,
 						display: "flex",
@@ -100,15 +88,11 @@ export default function SecondView() {
 						/>
 					</View>
 					<View style={{
-						// paddingLeft: 100,
 						marginTop: 30,
 						width: 400,
 						flexDirection: "row",
 						alignItems: "center",
-
 						display: "flex",
-						// backgroundColor: 'green'
-
 					}}>
 						<InputComponent
 							placeholder='Search'
@@ -119,12 +103,10 @@ export default function SecondView() {
 								borderBottomLeftRadius: 10,
 								borderTopLeftRadius: 10,
 								borderColor: "#407BFF"
-								// borderRadius: 10,
 							}}
-							onChangeText={setCityName} // Captura a mudança do texto
-							value={cityName} // Define o valor do TextInput
+							onChangeText={setCityName}
+							value={cityName}
 						/>
-
 						<ButtonComponent
 							style={{
 								width: 100,
@@ -133,12 +115,9 @@ export default function SecondView() {
 								borderBottomRightRadius: 10,
 								backgroundColor: '#407BFF',
 								alignItems: "center",
-								justifyContent: "center",
-
+								justifyContent: "center"
 							}}
 							onPress={() => {
-								// console.log("Botão pressionado!");
-								// handleSubmit();
 								searchWeather();
 							}}
 							icon={<ImageComponent
@@ -152,29 +131,26 @@ export default function SecondView() {
 						/>
 					</View>
 				</View>
-
 				{loading && !show ? (
 
 					<View style={{
-						// backgroundColor: "red",
 						alignItems: 'center',
 						marginTop: 70,
 						display: "flex",
-						width: "100%",
+						width: "100%"
 					}}>
 						<LoadingComponent />
 					</View>
 				)
 					: null
 				}
-				{/* {!loading && !show ? (
+				{!loading && !show ? (
 
 					<View style={{
-						// backgroundColor: "red",
 						alignItems: 'center',
 						marginTop: 70,
 						display: "flex",
-						width: "100%",
+						width: "100%"
 					}}>
 						<ImageComponent
 							img={require('../../assets/images/image2.png')}
@@ -187,10 +163,8 @@ export default function SecondView() {
 					</View>
 				)
 					: null
-				} */}
-
-
-				{/* {show && ( */}
+				}
+				{show && (
 
 					<View
 						style={{
@@ -200,8 +174,6 @@ export default function SecondView() {
 							display: "flex",
 							width: "100%",
 							gap: 20
-
-
 						}}>
 						<View
 							style={{
@@ -210,22 +182,17 @@ export default function SecondView() {
 								height: 80,
 								borderRadius: 10,
 								alignItems: 'center',
-								justifyContent: 'center',
-
-
+								justifyContent: 'center'
 							}}
 						>
 							<Text
 								style={{
 									fontSize: 20,
 									color: "#FFFFFF",
-									fontWeight: "bold",
-
+									fontWeight: "bold"
 								}}
 							>
-								{/* {weather.name} -  {countryName} */}
-
-
+								{weather.name} -  {countryName}
 							</Text>
 						</View>
 						<View
@@ -237,7 +204,6 @@ export default function SecondView() {
 								alignItems: 'center',
 								justifyContent: 'center',
 								gap: 10
-
 							}}
 						>
 							<View
@@ -245,48 +211,36 @@ export default function SecondView() {
 									display: 'flex',
 									flexDirection: 'row',
 									gap: 25,
-									alignItems: 'center',
-									backgroundColor: "red"
-
-
+									alignItems: 'center'
 								}}
 							>
 								<View >
 									<Image
-										source={{ uri: imageUrl }}
-										style={{ width: 50, height: 50 }}
-										// style={styles.image}
-										// resizeMode="cover" // ou "contain" dependendo do seu caso
+										source={{ uri: `https://openweathermap.org/img/wn/${icon}@2x.png` }}
+										style={{
+											width: 72,
+											height: 72
+										}}
 									/>
 								</View>
-								{/* <ImageComponent
-									img={require('../../assets/images/nuvem.png')}
-									width={56}
-									height={40}
-									style={{
-										backgroundColor: "none"
-									}}
-								/> */}
 								<Text
 									style={{
 										fontSize: 30,
 										color: "#FFFFFF",
-										fontWeight: "bold",
-
+										fontWeight: "bold"
 									}}
 								>
-									{/* {Math.round(weather.main.temp)}° C */}
+									{Math.round(weather.main.temp)}° C
 								</Text>
 							</View>
 							<Text
 								style={{
 									fontSize: 18,
 									color: "#FFFFFF",
-									fontWeight: "400",
-
+									fontWeight: "400"
 								}}
 							>
-								{/* {capitalizeFirstLetter(weather.weather[0].description)} */}
+								{capitalizeFirstLetter(weather.weather[0].description)}
 							</Text>
 						</View>
 						<View
@@ -298,7 +252,7 @@ export default function SecondView() {
 								alignItems: 'center',
 								paddingLeft: 20,
 								flexDirection: 'row',
-								gap: 20,
+								gap: 20
 							}}
 						>
 							<ImageComponent
@@ -313,11 +267,10 @@ export default function SecondView() {
 								style={{
 									fontSize: 18,
 									color: "#FFFFFF",
-									fontWeight: "400",
-
+									fontWeight: "400"
 								}}
 							>
-								{/* Sensação térmica: {Math.round(weather.main.feels_like)}° C */}
+								Sensação térmica: {Math.round(weather.main.feels_like)}° C
 							</Text>
 						</View>
 						<View
@@ -329,7 +282,7 @@ export default function SecondView() {
 								alignItems: 'center',
 								paddingLeft: 20,
 								flexDirection: 'row',
-								gap: 20,
+								gap: 20
 							}}
 						>
 							<ImageComponent
@@ -344,12 +297,10 @@ export default function SecondView() {
 								style={{
 									fontSize: 18,
 									color: "#FFFFFF",
-									fontWeight: "400",
-
+									fontWeight: "400"
 								}}
 							>
-								{/* Pressão do ar: {weather.main.pressure} hPa */}
-
+								Pressão do ar: {weather.main.pressure} hPa
 							</Text>
 						</View>
 						<View
@@ -361,7 +312,7 @@ export default function SecondView() {
 								alignItems: 'center',
 								paddingLeft: 20,
 								flexDirection: 'row',
-								gap: 20,
+								gap: 20
 							}}
 						>
 							<ImageComponent
@@ -376,17 +327,14 @@ export default function SecondView() {
 								style={{
 									fontSize: 18,
 									color: "#FFFFFF",
-									fontWeight: "400",
-
+									fontWeight: "400"
 								}}
 							>
-								{/* Humidade: {weather.main.humidity}% */}
+								Humidade: {weather.main.humidity}%
 							</Text>
 						</View>
 					</View>
-				{/* )} */}
-
-
+				)}
 				{error && !show && !loading ? (<View
 					style={{
 						flex: 1,
@@ -402,11 +350,8 @@ export default function SecondView() {
 					</Text>
 				</View>
 				) : null
-
 				}
-
 			</View>
 		</ScrollView>
-
 	);
 }

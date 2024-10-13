@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { ImageComponent } from '../components/ImageComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
@@ -46,6 +46,14 @@ export default function FirstView() {
 				<View style={{
 					marginTop: 40
 				}}>
+					{/* <Image
+						source={{ uri: 'https://kliquesites.com.br/acaidelivery/wp-content/uploads/2024/06/combo-tropical.png' }}
+						style={{
+							width: 200,
+							height: 200,
+
+						}}
+					/> */}
 					<ImageComponent
 						img={require('../../assets/images/image1.png')}
 						width={300}
@@ -64,8 +72,7 @@ export default function FirstView() {
 						paddingRight: 80,
 					}}
 				>
-					Inicie a busca por cidade para obter o clima atual e previsão.
-
+					Inicie a busca por cidade para obter informações sobre o clima atual.
 				</Text>
 			</View>
 			<View style={{
@@ -94,7 +101,7 @@ export default function FirstView() {
 						textAlign: "center",
 						fontWeight: 700
 					}}>
-					Iniciar Busca
+						Iniciar Busca
 					</Text>
 				</ButtonComponent>
 			</View>
